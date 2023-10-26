@@ -40,7 +40,7 @@ app.post('/submit', async (req, res) => {
 });
 
 async function modifyJsFile(){
-  const filePath = './asset/something.js';
+  const filePath = './asset/data.json';
 
   let content = await fs.readFile(filePath, 'utf-8');
   await fs.writeFile(filePath, content);
