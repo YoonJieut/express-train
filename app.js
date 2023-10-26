@@ -18,6 +18,24 @@ app.get('/', (req, res)=>{
   res.sendFile(__dirname + '/public/index.html');
 });
 
+// POST 요청 처리
+app.post('/submit', async (req, res) => {
+  const url = req.body.url;
+
+  // 외부 placeholder와 같은 주소를 가져옵니다. (이 예제에서는 가져오는 코드는 생략되었습니다.)
+  
+  // asset 폴더에 정보 저장
+  const data = {
+      lastSubmittedURL: url,
+      timestamp: new Date().toISOString()
+  };
+  
+  await fs.writeFile('./asset/data.json', JSON.stringify(data, null, 2));
+
+  res.redirect('/result.html');  
+  // 사용자를 결과 페이지로 리디렉션합니다.
+});
+
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');
 });
